@@ -1,4 +1,4 @@
-package com.dungeon;
+package com.dungeon.engine;
 
 public class Player extends DungeonObject {
 	private static final String asciiRep = " Q ";
@@ -32,4 +32,7 @@ public class Player extends DungeonObject {
 	public void moveDown() {
 		y++;
 	}
+	//public boolean checkProximity() {
+		//if ()
+	//}
 }

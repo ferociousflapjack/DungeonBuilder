@@ -1,6 +1,8 @@
-package com.dungeon;
+package com.dungeon.engine;
 
 import java.util.Scanner;
+//TODO build checkProximity method
+//TODO determine how to handle multiple interaction possibilities 
 
 public class GameState {
 	private DungeonRoom dungeon;
@@ -9,6 +11,14 @@ public class GameState {
 	public GameState(DungeonRoom dungeon, Player player) {
 		this.dungeon = dungeon;
 		this.player = player;
+	}
+	
+	public DungeonRoom getDungeon() {
+		return dungeon;
+	}
+	
+	public Player getPlayer() {
+		return player;
 	}
 	
 	public void printState() {//Displays room.
@@ -82,5 +92,4 @@ public class GameState {
 		}
 
 	}
-
 }

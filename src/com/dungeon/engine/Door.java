@@ -1,4 +1,4 @@
-package com.dungeon;
+package com.dungeon.engine;
 
 public class Door extends DungeonObject {
 	boolean unlocked;
@@ -9,5 +9,7 @@ public class Door extends DungeonObject {
 		this.unlocked = unlocked;
 		this.open = open;
 	}
-	
+	public boolean doorState() {
+		return open;
+	}
 }

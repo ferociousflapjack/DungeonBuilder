@@ -1,4 +1,4 @@
-package com.dungeon;
+package com.dungeon.engine;
 
 /*So what are the overall characteristics of items? There is consumable and equippable, then tiers for both of those.
  * In the equippables, there is armor and weapons

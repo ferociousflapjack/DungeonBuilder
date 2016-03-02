@@ -13,7 +13,7 @@
  *
  *I can set it up with methods to generate dungeon pieces of certain dimensions, ie vertical or horizontal hallways.
  */
-package com.dungeon;
+package com.dungeon.engine;
 
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.Scanner;
@@ -24,6 +24,7 @@ public class DungeonAssembler {
 		int randomWithinRange = ThreadLocalRandom.current().nextInt(x, y);
 		return randomWithinRange;
 	}
+	
 	public DungeonObject buildDungeonObject() {
 		int randChoice = randomWithinRange(1, 100);
 		if (randChoice < 50) {
@@ -32,10 +33,11 @@ public class DungeonAssembler {
 			return new FloorTrap(5);
 		}
 	}
+	
 	public DungeonRoom setupDungeonRoom() {
-		int roomWidth = 10;//randomWithinRange(3, 10);
-		int roomLength = 5;//randomWithinRange(3, 10);
-		int numObjInRoom = 3;//randomWithinRange(0, 6);
+		int roomWidth = randomWithinRange(6, 20);
+		int roomLength = randomWithinRange(6, 20);
+		int numObjInRoom = randomWithinRange(0, 6);
 		
 
 		DungeonRoom dungeon1 = new DungeonRoom(roomWidth, roomLength);

@@ -1,4 +1,4 @@
-package com.dungeon;
+package com.dungeon.engine;
 
 public class FloorTrap extends DungeonObject{
 	int damage;
