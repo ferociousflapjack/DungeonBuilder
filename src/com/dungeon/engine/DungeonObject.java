@@ -1,13 +1,14 @@
 package com.dungeon.engine;
 
 public class DungeonObject {
+	
 	String asciiRep;
 	boolean passable = false;
 	String imageName = "craft.png";
 	
 	
 	public DungeonObject(String imageName) {
-		imageName = this.imageName;
+		this.imageName = imageName;
 	}
 	
 	public String getImageName() {
@@ -20,5 +21,9 @@ public class DungeonObject {
 	
 	public boolean isPassable() {
 		return passable;
+	}
+	
+	public Event steppedOn() {
+		return null;
 	}
 }

@@ -1,6 +1,5 @@
 package com.dungeon.engine;
 
-import java.util.Scanner;
 //TODO build checkProximity method
 //TODO determine how to handle multiple interaction possibilities 
 
@@ -21,24 +20,6 @@ public class GameState {
 		return player;
 	}
 	
-	public void printState() {//Displays room.
-		for (int y = 0; y < dungeon.getRoomLength(); y++) {
-			for (int x = 0; x < dungeon.getRoomWidth(); x++) {
-				String coordinateChar;
-				if (dungeon.getDungeonTile(x, y) == null) {
-					coordinateChar = " . ";
-				}
-				else {
-					coordinateChar = dungeon.getDungeonTile(x, y).getCharacter();
-				}
-				if (x == player.getXCoord() && y == player.getYCoord()) {
-					coordinateChar = player.getCharacter();
-				}
-				System.out.print(coordinateChar);
-			}
-			System.out.println();
-		}
-		}
 	private boolean checkPassable(int changeX, int changeY) {
 		int x = player.getXCoord() + changeX;
 		int y = player.getYCoord() + changeY;
@@ -50,32 +31,42 @@ public class GameState {
 		}
 	}
 	
-	public boolean parseInput(String input) {
+	private void triggerEvents() {
+		DungeonObject currentTile = dungeon.getDungeonTile(player.getXCoord(), player.getYCoord());
+		if (currentTile != null) {
+			Event event = currentTile.steppedOn();
+			if (event != null) {
+				System.out.println(event.getEventText());
+			}
+		}
+	}
+	
+	public void parseInput(String input) {
 		if (input.equals("d")) {
 			if (checkPassable(1, 0)) {
 				player.moveRight(); 
 			}
-			return true;
+			
 		} else if (input.equals("a")) {
 			if (checkPassable(-1, 0)) {
 				player.moveLeft();
 			}
-			return true;
+			
 		} else if (input.equals("s")) {
 			if (checkPassable(0, 1)) {
 				player.moveDown();
 			}
-			return true;
+		
 		} else if (input.equals("w")) {
 			if (checkPassable(0, -1)) {
 				player.moveUp();
 			}
-			return true;
 		}
-		return false;
+		triggerEvents();
 	}
+}
 
-	public static void main(String[] args) {
+/*	public static void main(String[] args) {
 		DungeonAssembler assembler = new DungeonAssembler();
 		DungeonRoom dungeon1 = assembler.setupDungeonRoom();
 		Player player1 = new Player(5, 10, 1, 1);
@@ -91,5 +82,23 @@ public class GameState {
 			
 		}
 
+	}*/
+	/*public void printState() {//Displays room.
+	for (int y = 0; y < dungeon.getRoomLength(); y++) {
+		for (int x = 0; x < dungeon.getRoomWidth(); x++) {
+			String coordinateChar;
+			if (dungeon.getDungeonTile(x, y) == null) {
+				coordinateChar = " . ";
+			}
+			else {
+				coordinateChar = dungeon.getDungeonTile(x, y).getCharacter();
+			}
+			if (x == player.getXCoord() && y == player.getYCoord()) {
+				coordinateChar = player.getCharacter();
+			}
+			System.out.print(coordinateChar);
+		}
+		System.out.println();
 	}
-}
+	}*/
+

@@ -25,6 +25,7 @@ public class DungeonRoom {//Class procedurally generate a room in a dungeon.
 		int objX = ThreadLocalRandom.current().nextInt(1, getRoomWidth() - 1);
 		return objX;
 	}
+	
 	public int setObjYCoord() {//Randomly sets the y coordinate for a DungeonObject
 		int objY = ThreadLocalRandom.current().nextInt(1, getRoomLength() - 1);
 		return objY;

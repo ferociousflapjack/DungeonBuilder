@@ -26,8 +26,7 @@ public class Board extends JPanel implements ActionListener {
 	private final int DELAY = 3;
 	private int cellWidth = 60;
 	private int cellLength = 60;
-	
-	
+		
 	public Board() {
 		
 		addKeyListener(new TAdapter());
@@ -41,8 +40,6 @@ public class Board extends JPanel implements ActionListener {
 				
 		timer = new Timer(DELAY, this);
 		timer.start();
-		
-		//System.out.println(this.getKeyListeners().length);
 	}
 	
 	public void paintComponent(Graphics g) {
@@ -53,24 +50,30 @@ public class Board extends JPanel implements ActionListener {
 		Toolkit.getDefaultToolkit().sync();
 	}
 	
+	public void pullImage(Graphics2D g2d, DungeonObject obj, int x, int y) {
+		ImageIcon ii;
+
+		if (obj == null) {
+			ii = new ImageIcon("floor.png");
+		} else {
+			ii = new ImageIcon(obj.getImageName());
+		}
+		g2d.drawImage(ii.getImage(), x * cellWidth, y * cellLength, this);
+	}
+	
 	private void doDrawing(Graphics g) {
 		DungeonRoom dungeon = gameState.getDungeon();
 		
-		//TODO set up helper function to give image object from dungeon object
 		Graphics2D g2d = (Graphics2D) g;
 		for (int y = 0; y < dungeon.getRoomLength(); y++) {
 			for (int x = 0; x < dungeon.getRoomWidth(); x++) {
 				DungeonObject currentTile = dungeon.getDungeonTile(x, y);
-				if (currentTile != null) {
-					ImageIcon ii = new ImageIcon(currentTile.getImageName());
-					g2d.drawImage(ii.getImage(), x * cellWidth, y * cellLength, this);
-				}
+				pullImage(g2d, currentTile, x, y);
 			}
 		}
 		
 		Player playerSpot = gameState.getPlayer();
-		ImageIcon ii = new ImageIcon(playerSpot.getImageName());
-		g2d.drawImage(ii.getImage(), playerSpot.getXCoord() * cellWidth, playerSpot.getYCoord() * cellLength, this);
+		pullImage(g2d, playerSpot, playerSpot.getXCoord(), playerSpot.getYCoord());
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -78,12 +81,10 @@ public class Board extends JPanel implements ActionListener {
 		repaint();
 	}
 	
-	
-	
 	private class TAdapter extends KeyAdapter {
 		
 		public void keyPressed(KeyEvent e) {
-			System.out.println("hello");
+			
 			int key = e.getKeyCode();
 			String keyPress = "";
 			
@@ -102,7 +103,7 @@ public class Board extends JPanel implements ActionListener {
 			if (key == KeyEvent.VK_S) {
 				keyPress = "s";
 			}
-			System.out.println("blarg");
+			
 			gameState.parseInput(keyPress);
 		}
 		

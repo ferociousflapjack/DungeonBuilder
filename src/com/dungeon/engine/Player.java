@@ -6,9 +6,10 @@ public class Player extends DungeonObject {
 	private int atk;
 	private int x;
 	private int y;
+	private static final String imageName = "player.png";
 	
 	public Player(int hp, int atk, int x, int y) {
-		super(asciiRep);
+		super(imageName);
 		this.hp = hp;
 		this.atk = atk;
 		this.x = x;

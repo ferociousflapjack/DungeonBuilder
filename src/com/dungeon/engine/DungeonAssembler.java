@@ -28,15 +28,15 @@ public class DungeonAssembler {
 	public DungeonObject buildDungeonObject() {
 		int randChoice = randomWithinRange(1, 100);
 		if (randChoice < 50) {
-			return new Chest(false, false);
+			return new Chest(true, false);
 		} else {
 			return new FloorTrap(5);
 		}
 	}
 	
 	public DungeonRoom setupDungeonRoom() {
-		int roomWidth = randomWithinRange(6, 20);
-		int roomLength = randomWithinRange(6, 20);
+		int roomWidth = randomWithinRange(6, 15);
+		int roomLength = randomWithinRange(6, 15);
 		int numObjInRoom = randomWithinRange(0, 6);
 		
 
