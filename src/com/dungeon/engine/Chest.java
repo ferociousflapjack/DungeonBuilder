@@ -20,4 +20,5 @@ public class Chest extends DungeonObject {
 	public Event steppedOn() {
 		return new ChestOpenEvent();
 	}
+	//test
 }
